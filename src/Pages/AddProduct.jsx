@@ -2,11 +2,19 @@ import axios from 'axios';
 import React, { useContext } from 'react';
 import { AuthContext } from '../Auth/auth';
 import Lottie from 'lottie-react';
-import AddData from './../../src/assets/addData.json'
+import AddData from './../../src/assets/Animation - 1750144183306.json'
+import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 
 const AddProduct = () => {
 
-  const { users } = useContext(AuthContext)
+  const { users,loading } = useContext(AuthContext)
+
+  if(loading){
+    return <span className="loading loading-spinner loading-xl"></span>
+  }
+
+
 
   const handleProductAdd = (e) => {
     e.preventDefault();
@@ -16,20 +24,23 @@ const AddProduct = () => {
 
     if (users?.email) {
       const email = users?.email
-      console.log(email)
+       
       axios.post('http://localhost:3000/product', { productDe, email }, { withCredentials: true })
-        .then(res => console.log(res))
-        .catch(error => console.log(error))
+        .then(() =>  toast.success('Product add successfully'))
+        .catch(( ) => toast.error('Product Not Add'))
     }
 
 
 
-    // console.log('add hosa',productDe)
+     
   }
 
 
   return (
     <section className="p-6 bg-[#F0F4F3] text-gray-900">
+      <Helmet>
+        <title>Add product pages</title>
+      </Helmet>
       <form onSubmit={handleProductAdd} className="container flex flex-col mx-auto space-y-12">
         <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm  bg-green-100">
           <div className="space-y-2 col-span-full lg:col-span-1">
@@ -83,14 +94,14 @@ const AddProduct = () => {
 
             <div className="col-span-full sm:col-span-3">
               <label htmlFor="Product price" className="text-sm font-bold">Product price </label>
-              <input id="Product price" type="number" placeholder="Product Image" name='Product_price' className="w-full p-2 rounded-md  bg-white" />
+              <input id="Product price" type="number" placeholder="Product Price" name='Product_price' className="w-full p-2 rounded-md  bg-white" />
             </div>
             <div className="col-span-full sm:col-span-3">
               <label htmlFor="Product Rating" className="text-sm font-bold">Product Rating </label>
               <input id="Product Rating" type="number" min={1} max={5} placeholder="Product Image" name='Product_Rating' className="w-full p-2 rounded-md  bg-white" />
             </div>
             <button type='submit'
-              className="group w-full relative inline-flex items-center overflow-hidden rounded-sm bg-emerald-600  px-10 py-3 text-white focus:ring-3 focus:outline-hidden"
+              className="group w-full relative   items-center-safe overflow-hidden rounded-sm bg-emerald-600  px-24 md:px-0  py-3 text-white "
 
             >
               <span className="absolute -start-full transition-all group-hover:start-4">

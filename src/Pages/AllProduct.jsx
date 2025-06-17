@@ -4,6 +4,7 @@ import AllCards from '../components/AllProduct/AllCards';
 import TableRo from '../components/AllProduct/TableRo';
 import axios from 'axios';
 import { AuthContext } from '../Auth/auth';
+import { Helmet } from 'react-helmet';
 
 const AllProduct = () => {
     const { users } = useContext(AuthContext)
@@ -42,6 +43,9 @@ const AllProduct = () => {
 
     return (
         <div className='container mx-auto'>
+            <Helmet>
+                <title>All product pages</title>
+            </Helmet>
 
             <div className='flex justify-end-safe mt-10 gap-2'>
 

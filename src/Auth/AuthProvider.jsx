@@ -3,61 +3,78 @@ import { AuthContext } from './auth';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { auth } from './firebase.init';
 import axios from 'axios';
+// import { Navigate, useLocation, useNavigate } from 'react-router';
+// import { useLocation, useNavigate } from 'react-router';
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
 
-    const [users , setUsers]=useState(null)
+    const [users, setUsers] = useState(null)
+    const [loading, setLoading] = useState(true)
+
+
+
     const provider = new GoogleAuthProvider();
 
-const handleSignUpPass = (email , password )=>{
-    return createUserWithEmailAndPassword(auth , email ,password)
-}
-const handleSignInPass = (email , password)=>{
-    return signInWithEmailAndPassword(auth ,email ,password)
-}
+    const handleSignUpPass = (email, password) => {
+        // setLoading(true)
+        return createUserWithEmailAndPassword(auth, email, password)
+    }
+    const handleSignInPass = (email, password) => {
+        // setLoading(true)
+        return signInWithEmailAndPassword(auth, email, password)
+    }
 
-const handleLogOut = ()=>{
-   return signOut(auth)
-}
+    const handleLogOut = () => {
+        // setLoading(true)
+        return signOut(auth)
+    }
 
-const handleGoogleSign = ()=>{
-    return signInWithPopup(auth ,provider)
-}
-//  export const user = users.email;
-
-
-useEffect(()=>{
-
-    const unsubscribe = onAuthStateChanged(auth , (currentUser)=>{
-        if(currentUser?.email){
-            setUsers(currentUser)
-            const email = currentUser?.email
-            //  console.log(email)
-            axios.post('http://localhost:3000/jwt', {email} ,{withCredentials:true} )
-            .then(res=>console.log(res.data))
-            .catch(error=>console.log(error))
-        }
-
-        return unsubscribe()
-    } )
-},[])
- 
-
-const userInfo = {
-  handleSignUpPass,
-  handleSignInPass,
-  handleLogOut,
-  handleGoogleSign,
-  users
-}
+    const handleGoogleSign = () => {
+        // setLoading(true)
+        return signInWithPopup(auth, provider)
+    }
+    //  export const user = users.email;
 
 
+    useEffect(() => {
+
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            if (currentUser?.email) {
+                setUsers(currentUser)
+                setLoading(false)
+
+                const email = currentUser?.email
+                //  console.log(email)
+                axios.post('http://localhost:3000/jwt', { email }, { withCredentials: true })
+                    .then(res => console.log(res.data))
+                    .catch(error => console.log(error))
+            } else {
+                setUsers(null);
+                setLoading(false);
+            }
+
+
+            return unsubscribe()
+        })
+    }, [])
+
+
+    const userInfo = {
+        handleSignUpPass,
+        handleSignInPass,
+        handleLogOut,
+        handleGoogleSign,
+        users,
+        loading
+    }
 
 
 
-    return <AuthContext value={userInfo}>
+
+
+    return <AuthContext.Provider value={userInfo}>
         {children}
-    </AuthContext>
+    </AuthContext.Provider>
 };
 
 export default AuthProvider;

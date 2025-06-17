@@ -7,6 +7,8 @@ import { FaMinus } from "react-icons/fa6";
 import '@smastrom/react-rating/style.css'
 import { AuthContext } from '../Auth/auth';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 
 const Details = () => {
     // const data = useLoaderData()
@@ -91,11 +93,12 @@ const Details = () => {
             if (Product_Quantity >= quantity) {
                 axios.post(`http://localhost:3000/product/quantityUpdate/${_id}`, { byQuantity: Number(quantity), user: users.email }).then(res => {
                     setStock(res.data.Product_Quantity)
+                    toast.success('Product Add To Cart')
                     navigates(`/cart`, { state: { product: res.data } })
-                    console.log(res.data)
+                    // console.log(res.data)
                 }).catch(error => console.log(error))
-            } else console.log('stock out')
-        } else console.log(`minimum buy ${Minimum_selling_quantity}`)
+            } else  toast.warn('stock out')
+        } else  toast.warning(`minimum buy ${Minimum_selling_quantity}`)
     }
 
 
@@ -105,6 +108,9 @@ const Details = () => {
 
 
         <section className="text-gray-600 body-font overflow-hidden">
+            <Helmet>
+                <title>Product Details</title>
+            </Helmet>
             <div className="container px-5 py-24 mx-auto">
                 <div className="lg:w-4/5 mx-auto flex flex-wrap">
                     <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src={Product_Image} />
@@ -197,7 +203,7 @@ const Details = () => {
 
                                     </div>
 
-                                    <div className='bg-gray-100 py-2 rounded-md space-x-7 w-1/3 mx-auto flex justify-center items-center gap-1 mt-6'>
+                                    <div className='bg-gray-100 py-2 rounded-md space-x-7 w-1/2 md:w-1/3 mx-auto flex justify-center items-center gap-1 mt-6'>
                                         <button onClick={handelMinus} disabled={isDisable} className="   hover:cursor-pointer btn-square">
                                             <FaMinus></FaMinus>
                                         </button>

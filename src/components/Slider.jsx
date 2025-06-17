@@ -30,9 +30,9 @@ const Slider = () => {
                 modules={[Pagination]}
                 className="mySwiper"
             >
-                <SwiperSlide><img className='h-[500px] w-full object-cover relative' src="ritupon-baishya-ZctszMbK0xU-unsplash.jpg" alt="" /></SwiperSlide>
-                <SwiperSlide><img className='h-[500px] w-full object-cover relative' src="samer-khodeir-V2owNGx837Q-unsplash.jpg" alt="" /></SwiperSlide>
-                <SwiperSlide><img className='h-[500px] w-full object-cover relative' src="simon-daoudi-2wFoa040m8g-unsplash.jpg" alt="" /></SwiperSlide>
+                <SwiperSlide><img className='h-[500px] w-full object-cover relative' src="/banner3 sp.jpg" alt="" /></SwiperSlide>
+                <SwiperSlide><img className='h-[500px] w-full object-cover relative' src="/public/banner4 sp.jpg" alt="" /></SwiperSlide>
+                <SwiperSlide><img className='h-[500px] w-full object-cover relative' src="/public/female2 discound.jpg" alt="" /></SwiperSlide>
             </Swiper>
         </div>
     );

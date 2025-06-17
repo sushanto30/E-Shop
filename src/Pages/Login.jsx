@@ -1,12 +1,20 @@
 import Lottie from 'lottie-react';
 import React, { use } from 'react';
 import loginAni from '../../src/assets/login.json'
-import { Link } from 'react-router';
+ 
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Auth/auth';
-// import signUpAni from '../../src/assets/sign up.json'
+import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
+ 
 
 const Login = () => {
     const {handleSignInPass ,handleGoogleSign}= use(AuthContext)
+    const navigate = useNavigate();
+     const location = useLocation()
+        const goToPath = location?.state?.form.pathname || '/' ;
+
+
 
     const handleSignIn = (e) => {
         e.preventDefault();
@@ -18,21 +26,31 @@ const Login = () => {
         if (password.length > 6) {
             if (password.match(/[a-z]/i)) {
                 if (password.match(/[A-Z]/)) {
-                    handleSignInPass(email, password).then(res => console.log(res)).catch(error => console.log(error))
-                } else console.log(' boro must')
-            } else console.log(' soto  must')
-        } else console.log('must be 6 letter')
+                    handleSignInPass(email, password).then((  ) =>  {
+                        toast.success('Login successful')
+                        navigate(goToPath, { replace: true })
+                    } )
+                    .catch(error => console.log(error))
+                } else  toast.error(' Upper case letter must')
+            } else  toast.error(' Lower case letter must')
+        } else  toast.error('must be 6 letter')
 
         console.log(email , password)
 
     }
     const handleGoogleSignIn = ()=>{
-            handleGoogleSign().then(res => console.log(res)).catch(error => console.log(error))
+            handleGoogleSign().then((  ) => { 
+                 toast.success('Login successful')
+                navigate(goToPath, { replace: true })
+            }).catch(error => console.log(error))
         }
 
 
     return (
         <div className='container mx-auto mt-16 flex gap-5'>
+            <Helmet>
+                <title>Login pages</title>
+            </Helmet>
             <div className="w-full     p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800">
                 <h2 className="mb-3 text-3xl font-semibold text-center">Login to your account</h2>
                 <p className="text-sm text-center dark:text-gray-600">Dont have account?

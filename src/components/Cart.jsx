@@ -4,21 +4,14 @@ import {   useEffect, useState  } from 'react';
 // import {   useNavigate,   } from 'react-router';
 import { AuthContext } from '../Auth/auth';
 import CartTableRo from './CartTableRo';
+import { Helmet } from 'react-helmet';
 
 const Cart = () => {
 
    
     const [data , setData]=useState([])
    
-    // const id = useParams()
-    //  console.log(id)
-
-    // const location = useLocation()
-    // const data = location.state?.product
-    // setProduct(data)
-//    const [product , setProduct]=useState(data)
-
-    // console.log(data)b
+    
 
     useEffect(()=>{
 
@@ -37,7 +30,10 @@ const Cart = () => {
 
 
     return (
-        <div className="container p-2 mx-auto sm:p-4 text-gray-100 dark:text-gray-800">
+        <div className="container lg:min-h-screen p-2 mx-auto sm:p-4 text-gray-100 dark:text-gray-800">
+            <Helmet>
+                <title>Cart Pages</title>
+            </Helmet>
             <h2 className="mb-4 text-2xl font-semibold leading-tight">Cart List ...</h2>
             <div className="overflow-x-auto">
                 <table className="min-w-full text-xs">

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import CategoryCard from './CategoryCard';
 import axios from 'axios';
 import { AuthContext } from '../Auth/auth';
+import { Helmet } from 'react-helmet';
 
 const Category = () => {
 
@@ -18,7 +19,7 @@ const Category = () => {
 
             axios.get(`http://localhost:3000/product?email=${email}`, {  withCredentials: true })
                 .then(res => {
-                    console.log(res.data)
+                    // console.log(res.data)
                     const categories = res.data?.map(item => item.Product_Category)
 
 
@@ -40,10 +41,13 @@ const Category = () => {
     return (
 
         <div className='container mx-auto mt-10'>
+            <Helmet>
+                category pages
+            </Helmet>
 
             <h1 className='text-center font-extrabold text-4xl'>All Categories</h1>
 
-            <div className='grid grid-cols-3 mt-7 justify-items-center mb-10 gap-5'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-7 justify-items-center mb-10 gap-5'>
                 {
                     cat?.map((items, ind) => <CategoryCard key={ind} items={items}></CategoryCard>)
                 }

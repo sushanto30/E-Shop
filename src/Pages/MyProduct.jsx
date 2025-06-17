@@ -1,19 +1,23 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, {   useEffect, useState } from 'react';
 import { AuthContext } from '../Auth/auth';
 import AllCards from '../components/AllProduct/AllCards';
+import { Helmet } from 'react-helmet';
 
 const MyProduct = () => {
-    // const {users}=useContext(AuthContext)
+    // const {  loading}=useContext(AuthContext)
+    
     const [Products, setProducts] = useState(null)
+   
 
     useEffect(() => {
+    
 
         axios.get('http://localhost:3000/myProduct', { withCredentials: true })
             .then(res => {
 
                 setProducts(res.data)
-                // console.log(res.data)
+            
 
 
             })
@@ -21,13 +25,18 @@ const MyProduct = () => {
 
     }, [])
 
-    if (!Products) {
+    
+
+    if (!Products ) {
         return <span className="loading loading-spinner loading-xl"></span>
     }
 
 
     return (
         <div className='container mx-auto justify-center-safe'>
+            <Helmet>
+                <title>My Product Pages</title>
+            </Helmet>
            
            <h1 className='text-4xl font-extrabold text-center mt-10'> My Product List...</h1>
 

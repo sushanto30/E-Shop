@@ -6,6 +6,11 @@ import { HydratedRouter } from 'react-router/dom';
 
 const Card = ({ item }) => {
     // console.log(item)
+     const navigates = useNavigate()
+
+    if(!item){
+    return <span className="loading loading-spinner loading-xl"></span>
+  }
 
      const {  
         _id,
@@ -17,7 +22,7 @@ const Card = ({ item }) => {
         Short_Description }= item
 
 
-    const navigates = useNavigate()
+   
 
     const handleNavigate = () => {
         navigates(`/details/${item._id}`)

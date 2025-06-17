@@ -1,12 +1,24 @@
-import React, { useContext, useState } from 'react';
-import { Link, NavLink } from 'react-router';
+import React, { useContext, useState  } from 'react';
+// import { Link, NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../Auth/auth';
+import { Tooltip } from 'react-tooltip';
+import { useNavigate } from 'react-router-dom';
+import { FaCartArrowDown } from "react-icons/fa";
+import { ToastContainer } from 'react-toastify';
+// import { Links } from 'react-router';
 
 const Navbar = () => {
 
-    const { users, handleLogOut } = useContext(AuthContext)
-    console.log(users)
-    const [isDropDown, setIsDropDown] = useState(false)
+    const { users, handleLogOut,loading } = useContext(AuthContext)
+    const navigate = useNavigate();
+      const [isDropDown, setIsDropDown] = useState(false)
+
+    // if (loading) {
+    //     return <span className="loading loading-spinner loading-xl"></span>
+    // }
+
+
 
     const link = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
@@ -36,16 +48,18 @@ const Navbar = () => {
     </>
 
     const handleSignOut = () => {
-        handleLogOut().then(() => {}).catch(( )=> { })
+        handleLogOut().then(() => navigate('/login')).catch(error => {
+        console.error('Logout error:', error)})
     }
 
 
     return (
         <div className='container mx-auto'>
+            <ToastContainer></ToastContainer>
             <div className="navbar bg-base-100 shadow-sm">
-                <div className="navbar-start">
+                <div className="navbar-start gap-1 md:gap-3">
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                        <div tabIndex={0} role="button" className="  lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
                         </div>
                         <ul
@@ -56,7 +70,8 @@ const Navbar = () => {
 
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">daisyUI</a>
+                    {/* <a className="   text-xl">daisyUI</a> */}
+                    <img className='w-16' src="/logo.jpg" alt="" />
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -68,15 +83,34 @@ const Navbar = () => {
 
 
                     <div className='flex justify-center-safe items-center gap-1'>
-                        <p typeof='button ' className='btn'><NavLink to={'/cart'}>Cart</NavLink></p>
-                        <div>
+                        <p typeof='button ' className=' mr-1.5 lg:mr-3 w-4 md:w-10'><Link to={'/cart'}><FaCartArrowDown></FaCartArrowDown></Link></p>
+                       {
+                        loading ?  <span className="loading loading-spinner loading-xl"></span>  : <div>
                             {
-                                users ? < button onClick={handleSignOut} className="btn"> Sign Out </button> : <div>
-                                    <Link to={'/login'} className="btn">  Log in </Link>
-                                    <Link to={'/signup'} className="btn"> Sign Up </Link>
+                                users ? <div className="avatar">
+                                    <div className=" w-8 lg:w-12  "  >
+
+                                        <a
+                                            data-tooltip-id="my-tooltip"
+                                            data-tooltip-content={users.displayName}
+                                        // data-tooltip-place="top"
+                                        >
+                                            <img src={users.photoURL} />
+                                        </a>
+
+
+                                        <Tooltip id="my-tooltip" />
+
+                                    </div>
+                                    <button events={['click']} onClick={() => handleSignOut()} className='btn ml-3 bg-emerald-600 text-xs md:text-sm text-white'> Log Out </button>
                                 </div>
+                                    : <div>
+                                        <Link to={'/login'} className="btn">  Log in </Link>
+                                        <Link to={'/signup'} className="btn"> Sign Up </Link>
+                                    </div>
                             }
                         </div>
+                       }
                     </div>
 
 

@@ -17,6 +17,8 @@ import Details from './components/Details.jsx';
 import Cart from './components/Cart.jsx';
 import AllProductUpdate from './components/AllProduct/AllProductUpdate.jsx';
 import MyProduct from './Pages/MyProduct.jsx';
+import PrivetRoute from './components/PrivetRoute.jsx';
+import ErrorPages from './Pages/ErrorPages.jsx';
 // import { AuthContext } from './Auth/auth.js';
 
 // const {users}=useContext(AuthContext)
@@ -42,20 +44,24 @@ const router = createBrowserRouter([
       },
       {
         path: '/addProduct',
-        Component: AddProduct,
+         element: <PrivetRoute><AddProduct></AddProduct></PrivetRoute>
+        // Component: AddProduct,
         
       },
       {
         path:'/allProduct',
-        Component:AllProduct,
+        element: <PrivetRoute><AllProduct></AllProduct></PrivetRoute>
+        // Component:AllProduct,
          
       },
       {
         path:'/myProduct',
-        Component:MyProduct
+        element: <PrivetRoute><MyProduct></MyProduct></PrivetRoute>
+        // Component:MyProduct
       },
       {
         path:'/allProductUpdate/:id',
+
         Component:AllProductUpdate,
        
 
@@ -72,13 +78,18 @@ const router = createBrowserRouter([
       },
       {
         path:'/cart',
+        element: <PrivetRoute><Cart></Cart> </PrivetRoute>
+        // Component:Cart,
         
-        Component:Cart,
-        
-      }
+      },
+       
 
     ]
   },
+  {
+    path:'/*',
+    Component:ErrorPages
+  }
 ]);
 
 

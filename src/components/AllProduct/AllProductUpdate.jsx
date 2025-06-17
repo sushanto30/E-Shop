@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import Lottie from 'lottie-react';
 // import AddData from './../../src/assets/addData.json'
-import AddData from './../../../src/assets/addData.json'
+import AddData from './../../../src/assets/Animation - 1750144183306.json'
+import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 
 const AllProductUpdate = () => {
     // const data = useLoaderData()
@@ -56,17 +58,22 @@ const AllProductUpdate = () => {
         const fromData = new FormData(from);
         const productUp = Object.fromEntries(fromData.entries())
 
-        axios.patch(`http://localhost:3000/product/allUpdate/${_id}`, { productData: productUp }).then(res => console.log(res.data)).catch(error => console.log(error))
+        axios.patch(`http://localhost:3000/product/allUpdate/${_id}`, { productData: productUp })
+        .then(( ) => toast.success('Update successful'))
+        .catch(( ) => toast.error('Not Updated'))
 
     }
 
     return (
        
         <section className="p-6 bg-[#F0F4F3] text-gray-900">
+            <Helmet>
+                <title>product update from pages</title>
+            </Helmet>
             <form onSubmit={handleProductUpdate} className="container flex flex-col mx-auto space-y-12">
                 <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm  bg-green-100">
                     <div className="space-y-2 col-span-full lg:col-span-1">
-                        <p className="font-medium text-4xl"> Product Information </p>
+                        <p className="font-medium text-4xl">  Product Information Update</p>
                         <p className="text-xs">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci fuga autem eum!</p>
                         <div>
                             <Lottie animationData={AddData} loop={true}></Lottie>
