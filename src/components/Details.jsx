@@ -91,7 +91,7 @@ const Details = () => {
             if (Product_Quantity >= quantity) {
                 axios.post(`http://localhost:3000/product/quantityUpdate/${_id}`, { byQuantity: Number(quantity), user: users.email }).then(res => {
                     setStock(res.data.Product_Quantity)
-                    navigates('/cart', { state: { product: res.data } })
+                    navigates(`/cart`, { state: { product: res.data } })
                     console.log(res.data)
                 }).catch(error => console.log(error))
             } else console.log('stock out')
