@@ -104,9 +104,9 @@ const Navbar = () => {
                                     </div>
                                     <button events={['click']} onClick={() => handleSignOut()} className='btn ml-3 bg-emerald-600 text-xs md:text-sm text-white'> Log Out </button>
                                 </div>
-                                    : <div>
-                                        <Link to={'/login'} className="btn">  Log in </Link>
-                                        <Link to={'/signup'} className="btn"> Sign Up </Link>
+                                    : <div className='gap-2'>
+                                        <Link to={'/login'} className="btn  bg-emerald-600 text-white">  Log in </Link>
+                                        <Link to={'/signup'} className="btn bg-emerald-600 text-white"> Sign Up </Link>
                                     </div>
                             }
                         </div>
