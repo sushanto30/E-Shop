@@ -8,17 +8,11 @@ import { AuthContext } from '../Auth/auth';
 const AllProduct = () => {
     const { users } = useContext(AuthContext)
 
-    const [products, setProducts] = useState(null)
+    const [products, setProducts] = useState([])
+    // const [sort , setSort]=useState([])
     const [isDropDown, setIsDropDown] = useState(false)
     const [view, setView] = useState(true)
-
-
-    const handleSort = () => {
-        const bigQtyProduct = products?.filter(product => product.Minimum_selling_quantity > 100)
-        setProducts(bigQtyProduct)
-        console.log(bigQtyProduct)
-    }
-
+ 
     useEffect(() => {
         if (users?.email) {
             const email = users?.email
@@ -26,17 +20,25 @@ const AllProduct = () => {
                 .then(res => {
 
                     setProducts(res.data)
-
+                    // setSort(res.data)
 
                 })
                 .catch(error => console.log(error))
         }
 
-
-
-
-
     }, [users])
+
+
+    const handleSort = () => {
+        
+        const bigQtyProduct = products?.filter(product => product.Minimum_selling_quantity > 100)
+         setProducts(bigQtyProduct)
+        
+        console.log(bigQtyProduct)
+    }
+
+    // console.log(sort)
+    console.log(products)
 
     return (
         <div className='container mx-auto'>
@@ -45,7 +47,7 @@ const AllProduct = () => {
 
 
                 <div>
-                    <button onClick={handleSort} className='btn'>Show Available Products</button>
+                    <button onClick={handleSort} disabled={products.length === 0} className='btn'>Show Available Products</button>
                 </div>
 
 

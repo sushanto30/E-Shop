@@ -65,7 +65,7 @@ const Cart = () => {
                     <tbody>
                         <tr className="border-b border-opacity-20 border-gray-700 dark:border-gray-300 bg-gray-900 dark:bg-gray-50">
                             <td className="p-3">
-                                <img src={Product_Image} alt="" />
+                                <img className='w-20' src={Product_Image} alt="" />
                             </td>
                             <td className="p-3">
                                 <p>{Product_Tittle}</p>

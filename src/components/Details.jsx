@@ -140,7 +140,7 @@ const Details = () => {
                         </div>
                         <div className="flex">
                             <span className="title-font font-medium text-2xl text-gray-900">${Product_price}.00</span>
-                            <button onClick={() => document.getElementById('my_modal_5').showModal()} className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Buy Now</button>
+                            <button onClick={() => document.getElementById('my_modal_5').showModal()} className="flex ml-auto text-white  bg-emerald-600 border-0 py-2 px-6 focus:outline-none   rounded">Buy Now</button>
 
                             <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle ">
                                 <div className="modal-box">
