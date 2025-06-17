@@ -14,7 +14,7 @@ const CategoriesCards = () => {
 
     useEffect(() => {
 
-        axios.get(`http://localhost:3000/product/${category}`, { credentials: true })
+        axios.get(`https://b2b-projects-server.vercel.app/product/${category}`, { credentials: true })
             .then(res => {
 
                 setData(res.data)

@@ -17,7 +17,7 @@ const AllProduct = () => {
     useEffect(() => {
         if (users?.email) {
             const email = users?.email
-            axios.get(`http://localhost:3000/product?email=${email}`, { withCredentials: true })
+            axios.get(`https://b2b-projects-server.vercel.app/product?email=${email}`, { withCredentials: true })
                 .then(res => {
 
                     setProducts(res.data)

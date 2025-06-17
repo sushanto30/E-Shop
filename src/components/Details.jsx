@@ -23,7 +23,7 @@ const Details = () => {
 
     useEffect(() => {
 
-        axios.get(`http://localhost:3000/product/details/${id}`, { credentials: true })
+        axios.get(`https://b2b-projects-server.vercel.app/product/details/${id}`, { credentials: true })
             .then(res => {
 
                 setData(res.data)
@@ -91,7 +91,7 @@ const Details = () => {
 
         if (Minimum_selling_quantity <= quantity) {
             if (Product_Quantity >= quantity) {
-                axios.post(`http://localhost:3000/product/quantityUpdate/${_id}`, { byQuantity: Number(quantity), user: users.email }).then(res => {
+                axios.post(`https://b2b-projects-server.vercel.app/product/quantityUpdate/${_id}`, { byQuantity: Number(quantity), user: users.email }).then(res => {
                     setStock(res.data.Product_Quantity)
                     toast.success('Product Add To Cart')
                     navigates(`/cart`, { state: { product: res.data } })

@@ -25,7 +25,7 @@ const AddProduct = () => {
     if (users?.email) {
       const email = users?.email
        
-      axios.post('http://localhost:3000/product', { productDe, email }, { withCredentials: true })
+      axios.post('https://b2b-projects-server.vercel.app/product', { productDe, email }, { withCredentials: true })
         .then(() =>  toast.success('Product add successfully'))
         .catch(( ) => toast.error('Product Not Add'))
     }

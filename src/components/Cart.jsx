@@ -15,7 +15,7 @@ const Cart = () => {
 
     useEffect(()=>{
 
-        axios.get('http://localhost:3000/product/cart' ,{withCredentials:true})
+        axios.get('https://b2b-projects-server.vercel.app/product/cart' ,{withCredentials:true})
         .then(res => setData(res.data))
         .catch(error=>console.log(error))
 

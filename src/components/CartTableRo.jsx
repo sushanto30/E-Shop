@@ -24,7 +24,7 @@ const CartTableRo = ({ item }) => {
 
     const handleDeleteCart = (id) => {
         console.log(id)
-        axios.post(`http://localhost:3000/product/cart/${id}`, { user: users?.email }).then(res => {
+        axios.post(`https://b2b-projects-server.vercel.app/product/cart/${id}`, { user: users?.email }).then(res => {
             if (res.data.modifiedCount) {
                  toast.success('Product Remove from the Cart')
                 navigates('/')

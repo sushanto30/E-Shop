@@ -15,7 +15,7 @@ const AllProductUpdate = () => {
 
     useEffect(() => {
 
-        axios.get(`http://localhost:3000/product/details/${id}`, { credentials: true })
+        axios.get(`https://b2b-projects-server.vercel.app/product/details/${id}`, { credentials: true })
             .then(res => {
 
                 setData(res.data)
@@ -58,7 +58,7 @@ const AllProductUpdate = () => {
         const fromData = new FormData(from);
         const productUp = Object.fromEntries(fromData.entries())
 
-        axios.patch(`http://localhost:3000/product/allUpdate/${_id}`, { productData: productUp })
+        axios.patch(`https://b2b-projects-server.vercel.app/product/allUpdate/${_id}`, { productData: productUp })
         .then(( ) => toast.success('Update successful'))
         .catch(( ) => toast.error('Not Updated'))
 

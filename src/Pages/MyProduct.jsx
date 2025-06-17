@@ -13,7 +13,7 @@ const MyProduct = () => {
     useEffect(() => {
     
 
-        axios.get('http://localhost:3000/myProduct', { withCredentials: true })
+        axios.get('https://b2b-projects-server.vercel.app/myProduct', { withCredentials: true })
             .then(res => {
 
                 setProducts(res.data)

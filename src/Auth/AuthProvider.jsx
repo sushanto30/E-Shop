@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
 
                 const email = currentUser?.email
                 //  console.log(email)
-                axios.post('http://localhost:3000/jwt', { email }, { withCredentials: true })
+                axios.post('https://b2b-projects-server.vercel.app/jwt', { email }, { withCredentials: true })
                     .then(res => console.log(res.data))
                     .catch(error => console.log(error))
             } else {
