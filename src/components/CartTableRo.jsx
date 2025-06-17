@@ -19,6 +19,8 @@ const CartTableRo = ({ item }) => {
         Product_Quantity,
         Product_Tittle,
         Product_price,
+
+        Minimum_selling_quantity
     } = item
 
 
@@ -26,12 +28,12 @@ const CartTableRo = ({ item }) => {
         console.log(id)
         axios.post(`https://b2b-projects-server.vercel.app/product/cart/${id}`, { user: users?.email }).then(res => {
             if (res.data.modifiedCount) {
-                 toast.success('Product Remove from the Cart')
+                toast.success('Product Remove from the Cart')
                 navigates('/')
 
             }
             // console.log(res.data)
-        }).catch(() =>  toast.error('product not remove'))
+        }).catch(() => toast.error('product not remove'))
     }
 
 
@@ -48,7 +50,8 @@ const CartTableRo = ({ item }) => {
 
             </td>
             <td className="p-3">
-                {/* <p>{cart.byQuantity}</p> */}
+                <p>{
+                    Minimum_selling_quantity}</p>
 
             </td>
             <td className="p-3 text-right">

@@ -37,6 +37,10 @@ const Category = () => {
 
     }, [users])
 
+    if(!cat){
+        return <span className="loading loading-spinner loading-xl"></span>
+    }
+
 
     return (
 

@@ -50,7 +50,7 @@ const Cart = () => {
                             <th className="p-3">Image</th>
                             <th className="p-3">Product Name</th>
                             <th className="p-3">Stock</th>
-                            <th className="p-3">My Quantity</th>
+                            <th className="p-3">Min. sell</th>
                             <th className="p-3 text-right">Amount</th>
                             <th className="p-3">Status</th>
                         </tr>
