@@ -1,12 +1,54 @@
-# React + Vite
+# E-Shop - Online Shopping Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ 
 
-Currently, two official plugins are available:
+## Project Overview
+E-Shop is a modern full-stack e-commerce web application that allows users to browse products, add items to the cart, place orders, and manage their profiles.  
+Admins can manage products, orders, and users through a secure dashboard.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Technologies Used
+- Frontend: React.js, Redux, Tailwind CSS  
+- Backend: Node.js, Express.js  
+- Database: MongoDB  
+- Authentication: JWT and Firebase Authentication (optional)  
+- Payment Integration: Stripe API  
+- HTTP Client: Axios  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Features
+- User registration and login with authentication  
+- Product listing with categories and search functionality  
+- Shopping cart management  
+- Order placement and order history  
+- Admin dashboard to manage products, orders, and users  
+- Responsive design for mobile and desktop  
+
+---
+
+## Dependencies
+- react  
+- redux, react-redux  
+- react-router-dom  
+- axios  
+- express  
+- mongoose  
+- tailwindcss  
+- jsonwebtoken  
+- stripe (for payments)  
+
+---
+
+ 
+
+## Live Project Link
+[https://your-live-link.com](https://b2b-project-client.web.app/)
+
+---
+ 
+
+## Contributions & Feedback
+Contributions, bug reports, and feature requests are welcome! Please open an issue or submit a pull request.  
+Thank you for supporting the project! 🛒
